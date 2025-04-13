@@ -16,7 +16,7 @@ def main() -> None:
     parser.add_argument("destination",  help="destination directory")
     parser.add_argument("-v", "--verbose", action="store_true", help="verbose logging")
     parser.add_argument("-d", "--dry-run", action="store_true", help="dry-run mode")
-    parser.add_argument("-f", "--format", choices=["mp3", "alac"], default="mp3", help="output format (default: mp3)")
+    parser.add_argument("-f", "--format", choices=["mp3", "alac"], default="alac", help="output format (default: mp3)")
 
     args = parser.parse_args()
 
@@ -28,7 +28,7 @@ def main() -> None:
     sync_files(args.source, args.destination, args.dry_run, args.format)
 
 
-def sync_files(source_directory: str, destination_directory: str, dry_run=False, output_format="mp3") -> None:
+def sync_files(source_directory: str, destination_directory: str, dry_run=False) -> None:
     logger.info("Syncing %s -> %s", source_directory, destination_directory)
 
     input_files = [os.path.relpath(path, source_directory) for path in walk_directory(source_directory, ".flac")]
@@ -76,7 +76,7 @@ def walk_directory(directory: str, extension: str) -> list[str]:
     return matching_files
 
 
-def convert_file(source_path: str, destination_path: str, output_format: str = "mp3") -> bool:
+def convert_file(source_path: str, destination_path: str, output_format: str) -> bool:
     ensure_parent_directory(destination_path)
     
     if output_format == "mp3":
