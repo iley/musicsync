@@ -25,10 +25,10 @@ def main() -> None:
         log_level = logging.DEBUG
     logging.basicConfig(level=log_level)
 
-    sync_files(args.source, args.destination, args.dry_run, args.format)
+    sync_files(args.source, args.destination, args.format, args.dry_run)
 
 
-def sync_files(source_directory: str, destination_directory: str, dry_run=False) -> None:
+def sync_files(source_directory: str, destination_directory: str, output_format: str, dry_run=False) -> None:
     logger.info("Syncing %s -> %s", source_directory, destination_directory)
 
     input_files = [os.path.relpath(path, source_directory) for path in walk_directory(source_directory, ".flac")]
