@@ -16,7 +16,7 @@ def main() -> None:
     parser.add_argument("destination",  help="destination directory")
     parser.add_argument("-v", "--verbose", action="store_true", help="verbose logging")
     parser.add_argument("-d", "--dry-run", action="store_true", help="dry-run mode")
-    parser.add_argument("-f", "--format", choices=["mp3", "alac"], default="mp3", help="output format (default: mp3)")
+    parser.add_argument("-f", "--format", choices=["mp3", "alac"], default="alac", help="output format (default: mp3)")
 
     args = parser.parse_args()
 
