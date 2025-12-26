@@ -71,6 +71,8 @@ def walk_directory(directory: str, extension: str) -> list[str]:
     matching_files = []
     for root, _, files in os.walk(directory):
         for file in files:
+            if file.startswith("."):
+                continue
             if file.endswith(extension):
                 matching_files.append(os.path.join(root, file))
     return matching_files
