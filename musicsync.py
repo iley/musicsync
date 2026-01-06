@@ -84,7 +84,7 @@ def convert_file(source_path: str, destination_path: str, output_format: str) ->
     if output_format == "mp3":
         return run_command(["ffmpeg", "-i", source_path, "-c:a", "libmp3lame", "-qscale:a", "0", "-map_metadata", "0", destination_path])
     elif output_format == "alac":
-        return run_command(["ffmpeg", "-i", source_path, "-c:a", "alac", "-c:v", "copy", "-map_metadata", "0", "-movflags", "+faststart", "-f", "ipod", "-ar", "44100", destination_path])
+        return run_command(["ffmpeg", "-i", source_path, "-c:a", "alac", "-c:v", "mjpeg", "-map_metadata", "0", "-movflags", "+faststart", "-f", "ipod", "-ar", "44100", destination_path])
     else:
         print(f"Error: unsupported format {output_format}")
         return False
